@@ -20,7 +20,7 @@
     "test:ioredis": "REDIS_CLIENT=ioredis nyc mocha --bail --require ts-node/register test/index.ts",
     "format:check": "prettier --parser typescript --check 'lib/**/*.ts' 'test/**/*.ts'",
     "format:fix": "prettier --parser typescript --write 'lib/**/*.ts' 'test/**/*.ts'",
-    "prepack": "tsc"
+    "prepack": "npm i; tsc"
   },
   "dependencies": {
     "debug": "~4.3.1",
