@@ -123,8 +123,10 @@ export class RedisAdapter extends Adapter {
     this.responseChannel = prefix + "-response#" + this.nsp.name + "#";
     const specificResponseChannel = this.responseChannel + this.uid + "#";
 
-    const isRedisV4 = typeof this.pubClient.pSubscribe === "function";
-    if (isRedisV4) {
+    const useRedisV4Syntax =
+      typeof this.pubClient.pSubscribe === "function" &&
+      !(this.pubClient.options && this.pubClient.options.legacyMode);
+    if (useRedisV4Syntax) {
       this.subClient.pSubscribe(
         this.channel + "*",
         (msg, channel) => {
